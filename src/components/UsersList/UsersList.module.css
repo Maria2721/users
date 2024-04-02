@@ -1,0 +1,8 @@
+.list {
+    border: solid 2px var(--colors-graydark);
+    background-color: var(--colors-graylight);
+}
+
+.item {
+    padding: 0px 10px;
+}

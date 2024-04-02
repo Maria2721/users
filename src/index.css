@@ -1,5 +1,5 @@
 @import-normalize;
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
 
 * {
   box-sizing: border-box;
@@ -7,22 +7,25 @@
 
 :root {
   /* Typography */
-  --family: 'Nunito Sans', sans-serif;
+  --family: "Reddit Mono", monospace;
   --fs-sm: 14px;
   --fs-md: 16px;
   --fw-light: 300;
   --fw-normal: 600;
   --fw-bold: 800;
 
-  /* Other */
-  --radii: 0.5rem;
+  /* Colors */
+  --colors-white: #ffffff;
+  --colors-graylight: #efeef4;
+  --colors-graymain: #5c6970;
+  --colors-graydark: #2e3438;
+  --colors-bluelight: #3625ff;
+  --colors-bluedark: #0c0099;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--family);
+  background-color: var(--colors-white);
+  color: var(--colors-graydark);
 }

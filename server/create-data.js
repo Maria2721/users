@@ -17,14 +17,14 @@ const generateData = (count) => {
 	for (let i = 1; i <= count; i++) {
 		data.push({
 			id: i,
-			name: `Пользователь ${i}`,
-			department: `Отдел ${i}`,
-			company: `Компания ${i}`,
-			jobTitle: `Должность ${i}`,
+			name: `Имя ${i}`,
+			surname: `Фамилия ${i}`,
+			age: Math.floor(Math.random() * 50) + 20,
+			email: `email${i}@example.com`,
 		});
 	}
-	return data;
+	return { users: data };
 };
 
-const millionData = generateData(1000000); // Генерация миллиона данных
-writeToFile("users.json", JSON.stringify(millionData)); // Создание JSON-файла
+const millionData = generateData(10000); // Генерация миллиона данных
+writeToFile("db.json", JSON.stringify(millionData)); // Создание JSON-файла
