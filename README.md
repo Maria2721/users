@@ -18,7 +18,13 @@
 
 `npm install`
 
-`npm run start`
+`npm run dev`
+
+</p>
+
+<p>Set an array of any length by changing the parameter in the file create-data.js and running it in the terminal:
+
+`node create-data.js`
 
 </p>
 
