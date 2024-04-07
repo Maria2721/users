@@ -7,24 +7,28 @@ export const loadUsers = createAsyncThunk(
 	}
 );
 
-export const loadUserById = createAsyncThunk(
-	"@@users/load-user-by-id",
-	(id, { extra: { client, api } }) => {
-		return client.get(api.userById(id));
-	}
-);
-
 const initialState = {
 	status: "idle",
 	error: null,
-	list: [],
+	data: [],
 	currentUser: null,
 };
 
 const usersSlice = createSlice({
 	name: "@@users",
 	initialState,
-	reducers: {},
+	reducers: {
+		setCurrentUser: (state, action) => {
+			state.currentUser = action.payload;
+		},
+		updateUserById: (state, action) => {
+			const { id, updatedUser } = action.payload;
+			const index = state.data.findIndex((user) => user.id === id);
+			if (index !== -1) {
+				state.data[index] = { ...state.data[index], ...updatedUser };
+			}
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(loadUsers.pending, (state) => {
@@ -37,34 +41,28 @@ const usersSlice = createSlice({
 			})
 			.addCase(loadUsers.fulfilled, (state, action) => {
 				state.status = "received";
-				state.list = action.payload.data;
-			})
-			.addCase(loadUserById.pending, (state) => {
-				state.status = "loading";
-				state.error = null;
-			})
-			.addCase(loadUserById.rejected, (state, action) => {
-				state.status = "rejected";
-				state.error = action.payload || action.meta.error;
-			})
-			.addCase(loadUserById.fulfilled, (state, action) => {
-				state.status = "received";
-				state.currentUser = action.payload.data;
+				state.data = action.payload.data;
 			});
 	},
 });
 
 export const usersReducer = usersSlice.reducer;
 
+export const { setCurrentUser, updateUserById } = usersSlice.actions;
+
 export const selectUsersInfo = (state) => ({
 	status: state.users.status,
 	error: state.users.error,
-	qty: state.users.list.length,
+	qty: state.users.data.length,
 });
 
-export const selectAllUsers = (state) => state.users.list;
+export const selectAllUsers = (state) => state.users.data;
 
 export const selectAllUsersName = (state) =>
-	state.users.list.map((user) => user["name"]);
+	state.users.data.map((user) => user["name"]);
 
 export const selectCurrentUser = (state) => state.users.currentUser;
+
+export const selectCurrentUserInfo = (state, curUserId) => {
+	return state.users.data.find((user) => user.id === curUserId);
+};

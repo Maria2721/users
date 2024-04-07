@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import { loadUsers, selectAllUsers, selectUsersInfo } from "./users-slice";
+import { loadUsers, selectUsersInfo } from "../store/users-slice";
 
 export const useUsers = () => {
 	const dispatch = useDispatch();
-	const users = useSelector(selectAllUsers);
 	const { status, error, qty } = useSelector(selectUsersInfo);
 
 	useEffect(() => {
@@ -14,5 +13,5 @@ export const useUsers = () => {
 		}
 	}, [qty, dispatch]);
 
-	return [users, { status, error, qty }];
+	return { status, error, qty };
 };

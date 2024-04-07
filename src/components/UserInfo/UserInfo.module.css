@@ -1,1 +1,60 @@
-.info {}
+.wrapper {
+    margin-left: 40px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.title {
+    margin: 20px 0px;
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-normal);
+}
+
+.btnSave {
+    align-self: flex-end;
+    padding: 0px 12px;
+    height: 30px;
+
+    font-size: var(--fs-md);
+    font-weight: var(--fw-normal);
+
+    color: var(--colors-graylight);
+    background-color: var(--colors-bluedark);
+    border: 0;
+    border-radius: 6px;
+}
+
+.btnSave:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.7);
+}
+
+.btnSave:active {
+    color: rgba(var(--colors-graymain), 0.6);
+}
+
+.btnClose {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 20px;
+    width: 20px;
+
+    display: inline-block;
+    padding: 0px;
+    border: none;
+    background-color: var(--colors-white);
+}
+
+.iconClose {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.btnClose:hover {
+    cursor: pointer;
+}

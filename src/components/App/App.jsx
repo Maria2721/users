@@ -1,11 +1,21 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useUsers } from "../../hooks/useUsers";
+import {
+	selectCurrentUser,
+	selectCurrentUserInfo,
+} from "../../store/users-slice";
+
 import UsersList from "../UsersList/UsersList";
 import UserInfo from "../UserInfo/UserInfo";
+
 import styles from "./App.module.css";
 
-import { useUsers } from "../../store/use-users";
-
 function App() {
-	const [users, { status, error }] = useUsers();
+	const { status, error } = useUsers();
+	const userId = useSelector(selectCurrentUser);
+	const user = useSelector((state) => selectCurrentUserInfo(state, userId));
+	const [edit, setEdit] = useState(false);
 
 	return (
 		<div className={styles.wrapper}>
@@ -14,8 +24,15 @@ function App() {
 
 			{status === "received" && (
 				<>
-					<UsersList />
-					{/* <UserInfo /> */}
+					<UsersList handleEdit={() => setEdit(true)} />
+					{userId && edit && (
+						<UserInfo
+							user={user}
+							userId={userId}
+							edit={edit}
+							handleEdit={() => setEdit(false)}
+						/>
+					)}
 				</>
 			)}
 		</div>

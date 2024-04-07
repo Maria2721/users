@@ -1,30 +1,23 @@
 import { FixedSizeList as List } from "react-window";
 import { useSelector } from "react-redux";
-import { selectAllUsersName } from "../../store/users-slice";
+import { selectAllUsers } from "../../store/users-slice";
+
+import Item from "../Item/Item";
 import styles from "./UsersList.module.css";
 
-const Item = ({ data, index, style }) => {
-	const item = data[index];
-	return (
-		<div className={styles.item} style={style}>
-			{item}
-		</div>
-	);
-};
-
-const UsersList = () => {
-	const names = useSelector(selectAllUsersName);
+const UsersList = ({ handleEdit }) => {
+	const users = useSelector(selectAllUsers);
 
 	return (
 		<List
 			className={styles.list}
-			height={300}
+			height={350}
 			width={400}
-			itemSize={40}
-			itemCount={names.length}
-			itemData={names}
+			itemSize={35}
+			itemCount={users.length}
+			itemData={users}
 		>
-			{Item}
+			{(props) => Item({ ...props, handleEdit })}
 		</List>
 	);
 };

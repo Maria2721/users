@@ -1,0 +1,25 @@
+.item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px 10px;
+
+    font-size: var(--fs-md);
+    font-weight: var(--fw-normal);
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.item:hover {
+    cursor: pointer;
+    background-color: rgba(var(--colors-graymain), 0.5);
+}
+
+.item:active {
+    background-color: rgba(var(--colors-graymain), 0.8);
+}
