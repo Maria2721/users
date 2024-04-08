@@ -2,6 +2,7 @@
 	"name": "users",
 	"version": "0.1.0",
 	"author": "Maria Ivanova",
+	"homepage": "https://maria2721.github.io/users",
 	"private": true,
 	"dependencies": {
 		"@reduxjs/toolkit": "^2.2.2",
@@ -18,7 +19,9 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"server": "json-server --watch server/db.json -p 3001"
+		"server": "json-server --watch server/db.json -p 3001",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -40,6 +43,7 @@
 	},
 	"devDependencies": {
 		"concurrently": "^8.2.2",
+		"gh-pages": "^6.1.1",
 		"json-server": "^1.0.0-alpha.23"
 	}
 }
